@@ -9,23 +9,33 @@ import Foundation
 
 final class dataModel: ObservableObject {
     @Published var Film: MovieData = load("moviez.json")
-}
-
-func load<T:Decodable>(_ filename: String) -> T
-{
-    let data: Data
-    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-            else
-    {
-        fatalError("Couldn't find \(filename) in bundle")
-    }
-    do {
-        data = try Data(contentsOf: file)
+//    
+//    var genres: [String: [movies]]{
+//        Dictionary(
+//            grouping: Film.movies, by: {
+//                $0.genres
+//            }
+//            )
+//            
+//    }
         
-    }
-    catch {
-        fatalError("Could not load data from \(filename)")
-    }
+}
+    
+    func load<T:Decodable>(_ filename: String) -> T
+    {
+        let data: Data
+        guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+        else
+        {
+            fatalError("Couldn't find \(filename) in bundle")
+        }
+        do {
+            data = try Data(contentsOf: file)
+            
+        }
+        catch {
+            fatalError("Could not load data from \(filename)")
+        }
         do {
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: data)
@@ -35,4 +45,5 @@ func load<T:Decodable>(_ filename: String) -> T
             fatalError("could not parse data \n\(filename)")
         }
     }
+    
 
