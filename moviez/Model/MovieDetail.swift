@@ -36,10 +36,10 @@ struct MovieDetail: View {
             Text("Genres")
                 .font(.title)
                 .padding(.trailing, 250)
-            ForEach(movie.genres, id: \.self)
-        { genre in
-            Text(genre)
-      }
+//            ForEach(movie.genres, id: \.self)
+//        { genre in
+//            Text(genre)
+//      }
     }
   }
 }

@@ -9,17 +9,14 @@ import Foundation
 
 final class dataModel: ObservableObject {
     @Published var Film: MovieData = load("moviez.json")
-//    
-//    var genres: [String: [movies]]{
-//        Dictionary(
-//            grouping: Film.movies, by: {
-//                $0.genres
-//            }
-//            )
-//            
-//    }
-        
-}
+
+    var genres: [String: [movies]] {
+            Dictionary(
+                grouping: Film.movies, by: {$0.genres.rawValue}
+            )
+        }
+    }
+
     
     func load<T:Decodable>(_ filename: String) -> T
     {
